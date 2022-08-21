@@ -50,10 +50,7 @@
 
         // 初期スタート時の設定
         if (level == 0){
-          // スコア表示を空にする
-          $('#score').empty();
-          // 開始時間をセット
-          start_time = new Date().getTime();
+          // 処理を書く予定
         }
 
         //dimension * dimensionのspan要素を#cellsに入れる
@@ -66,43 +63,6 @@
         }
         // <div id="cells"></div>の要素に漢字が入る枠作成
         $('#cells').html(cells);
-
-        // dummyで埋められた配列を作る
-        let chars = [];
-        for (let i = 0; i < dimension * dimension; i++){
-          chars.push(dummy);
-        }
-
-        // 配列のうち１つをseikaiにする
-        let offset = Math.floor(Math.random() * chars.length);
-        chars.splice(offset, 1, seikai);
-
-        // 漢字の箱の要素に漢字自体を入れ込む
-        for(var i = 1; i <= chars.length; i++){
-          $('#s'+i).text(chars[i - 1]);
-          // 漢字をクリックした時の処理(正解の漢字をクリックした場合のみ)
-          $('#s'+i).click(function(){
-            // 正解の漢字をクリックした時の処理
-            if($(this).text() == seikai){
-              // レベルを上げる処理(漢字を次のセットに設定&縦横幅を増やす)
-              level++;
-              dimension += DIM_PLUS;
-              // 全レベルクリアした後の処理
-              if (level > MAX_LEVEL){
-                // 終了時間のセット
-                end_time = new Date().getTime();
-                // 時間スコア表示
-                $('#score').text(Math.round((end_time - start_time) / 1000) + '秒でクリアしました！');
-                // 初期化
-                level = 0;
-                dimension = DIM_FIRST;
-                return false;
-              }
-              // gameStart()の処理を再スタート
-              gameStart();
-            }
-          });
-        }
       }
     </script>
   </body>
