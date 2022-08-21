@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>間違い探しゲーム</title>
+    <style>
+      span {
+        cursor: pointer;
+      }
+      body {
+        text-align: center;
+        font-size: 30px;
+      }
+      #btn {
+        cursor: pointer;
+        height: 50px;
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>間違い探しゲーム(3問)</h1>
+    <p><input id="btn" type="button" value="開始" onclick="gameStart();"></p>
+    <p id="score"></p>
+    <div id="cells"></div>
+    <script>
+      // ゲームのレベル
+      let level = 0;
+      // ゲームで利用する漢字の配列(レベル順)
+      let games = [
+        ['白', '臼'],
+        ['徴', '微'],
+        ['委', '季']
+      ];
+      // ゲームの最高レベル
+      const MAX_LEVEL = games.length - 1;
+      // 初期の縦横の幅(個数)
+      const DIM_FIRST = 6;
+      // レベルアップごとに増える縦横の幅(個数)
+      const DIM_PLUS = 2;
+      // 実際の縦横の幅(個数)
+      let dimension = DIM_FIRST;
+      // ゲームの処理
+      function gameStart(){
+        // ダミーの漢字と正解の漢字を設定
+        let dummy = games[level][0];
+        let seikai = games[level][1];
+
+        // 初期スタート時の設定
+        if (level == 0){
+          // 処理を書く予定
+        }
+
+        //dimension * dimensionのspan要素を#cellsに入れる
+        let cells = '';
+        for (let i = 1; i <= dimension * dimension; i++){
+          cells += '<span id="s' + i + '"></span>';
+          if(i % dimension == 0){
+            cells += '<br />';
+          }
+        }
+        // <div id="cells"></div>の要素に漢字が入る枠作成
+        $('#cells').html(cells);
+      }
+    </script>
+  </body>
+</html>
